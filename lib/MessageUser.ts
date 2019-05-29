@@ -13,6 +13,7 @@ export default class MessageUser extends Message {
 	public getNick = (): string => this.data.nickname;
 	public getFullName = (): string => this.data.fullname;
 	public getEmail = (): string => this.data.email;
+	public getToken = (): string => this.data.token;
 
 	public setNick = (newName: string): void => {
 		this.data.nickname = newName

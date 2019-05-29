@@ -1,14 +1,15 @@
 import * as fs from "fs";
 import CLI from "./lib/CLI";
-import {connection, IMessage as IncomingMessage} from "websocket";
+import {connection} from "websocket";
 import Daemon from "./lib/Daemon";
 import MessageUser from "./lib/MessageUser";
 import Message from "./lib/Message";
-import {IMessageUser} from './lib/IMessageUser';
 import {MessageType} from "./lib/MessageType";
+import {Session} from "./lib/Session";
 
 const config = {
-	'version': '1.0'
+	'version': '1.0',
+	'token_hash': '4gu#%$G'
 };
 
 export default config;
@@ -22,27 +23,21 @@ const daemon = new Daemon(8443, {
 	passphrase: 'Aperture1!',
 });
 
-daemon.on('connect', (client: connection) => {
+daemon.on('authorize', (client: connection, session: Session) =>
+	daemon.sendPayload(new Message({
+		'type': MessageType.Host,
+		'content': `::${session.getToken()}`
+	}), client));
 
-	daemon.sendPayload(
-		new Message({
-			'type': MessageType.Host,
-			'content': 'test host message',
-		}), client);
-
-	daemon.sendPayload(
-		new Message({
-			'type': MessageType.Network,
-			'content': 'test net message',
-		}), client);
+daemon.on('chat', (session: Session, message: MessageUser) => {
+	CLI.log(`${session.client}: ${message.getContent()}`, '@');
+	daemon.broadcastPayload(message);
 });
 
-daemon.on('message', (message: IncomingMessage, connection: connection) => {
-	CLI.log(`${connection.remoteAddress}: ${message.utf8Data}`, '@');
-	const payload = message.utf8Data;
-
-	if (payload != undefined) {
-		let msg: MessageUser = MessageUser.fromJSON(<IMessageUser>JSON.parse(payload));
-		daemon.broadcastPayload(msg);
-	}
+daemon.on('badchat', (client: connection, message: MessageUser) => {
+	CLI.warn(`${client.remoteAddress} has a malformed token.`);
+	daemon.sendPayload(new Message({
+		'type': MessageType.Host,
+		'content': 'We are sorry, but you\'re connection token is not valid, please reconnect.'
+	}), client);
 });

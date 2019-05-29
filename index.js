@@ -13,11 +13,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs = __importStar(require("fs"));
 var CLI_1 = __importDefault(require("./lib/CLI"));
 var Daemon_1 = __importDefault(require("./lib/Daemon"));
-var MessageUser_1 = __importDefault(require("./lib/MessageUser"));
 var Message_1 = __importDefault(require("./lib/Message"));
 var MessageType_1 = require("./lib/MessageType");
 var config = {
-    'version': '1.0'
+    'version': '1.0',
+    'token_hash': '4gu#%$G'
 };
 exports.default = config;
 console.info("chat. Webserver Daemon [Version " + config.version + "]");
@@ -27,21 +27,20 @@ var daemon = new Daemon_1.default(8443, {
     key: fs.readFileSync('certs/key.pem'),
     passphrase: 'Aperture1!',
 });
-daemon.on('connect', function (client) {
-    daemon.sendPayload(new Message_1.default({
+daemon.on('authorize', function (client, session) {
+    return daemon.sendPayload(new Message_1.default({
         'type': MessageType_1.MessageType.Host,
-        'content': 'test host message',
-    }), client);
-    daemon.sendPayload(new Message_1.default({
-        'type': MessageType_1.MessageType.Network,
-        'content': 'test net message',
+        'content': "::" + session.getToken()
     }), client);
 });
-daemon.on('message', function (message, connection) {
-    CLI_1.default.log(connection.remoteAddress + ": " + message.utf8Data, '@');
-    var payload = message.utf8Data;
-    if (payload != undefined) {
-        var msg = MessageUser_1.default.fromJSON(JSON.parse(payload));
-        daemon.broadcastPayload(msg);
-    }
+daemon.on('chat', function (session, message) {
+    CLI_1.default.log(session.client + ": " + message.getContent(), '@');
+    daemon.broadcastPayload(message);
+});
+daemon.on('badchat', function (client, message) {
+    CLI_1.default.warn(client.remoteAddress + " has a malformed token.");
+    daemon.sendPayload(new Message_1.default({
+        'type': MessageType_1.MessageType.Host,
+        'content': 'We are sorry, but you\'re connection token is not valid, please reconnect.'
+    }), client);
 });

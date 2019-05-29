@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/node": "^12.0.2",
     "@types/websocket": "0.0.40",
+    "token": "^0.1.0",
     "typescript": "^3.4.5",
     "websocket": "^1.0.28"
   }

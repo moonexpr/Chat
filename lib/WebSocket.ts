@@ -1,11 +1,12 @@
 import {IncomingMessage, ServerResponse} from 'http';
-import {connection, IMessage, server as WebSocketServer} from 'websocket';
+import {client, connection, IMessage, server as WebSocketServer} from 'websocket';
 import * as https from 'https';
 import {Server} from 'https';
 import {SecureContextOptions} from "tls";
 import {EventEmitter} from "events";
 import config from '../index';
 import CLI from './cli';
+import {Session} from "./Session";
 
 const httpsRequest = (request: IncomingMessage, response: ServerResponse) => {
 	console.info(new Date() + ' : Received request for resource ' + request.url);
@@ -14,10 +15,10 @@ const httpsRequest = (request: IncomingMessage, response: ServerResponse) => {
 };
 
 export default class WebSocket extends EventEmitter {
-	private port: number;
-	private https: Server;
-	private ws: WebSocketServer;
-	private clients: connection[];
+	port: number;
+	https: Server;
+	ws: WebSocketServer;
+	clients: connection[];
 
 	constructor(listenPort: number, options: SecureContextOptions) {
 		super();
@@ -36,8 +37,8 @@ export default class WebSocket extends EventEmitter {
 			this.emit('connect', client);
 		});
 
-		ws.on('close', (connection: connection, reason: number, desc: string) => {
-			CLI.disconnect(`Received farewell from ${connection.remoteAddress}`);
+		ws.on('close', (client: connection, reason: number, desc: string) => {
+			CLI.disconnect(`Received farewell from ${client.remoteAddress}`);
 			this.emit('close', client, reason, desc)
 		});
 
