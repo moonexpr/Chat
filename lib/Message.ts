@@ -1,3 +1,5 @@
+import {IMessage} from './IMessage';
+
 export default class Message {
 
 	data: IMessage;

@@ -1,9 +1,9 @@
 import {IncomingMessage, ServerResponse} from 'http';
 import {connection, IMessage, server as WebSocketServer} from 'websocket';
+import * as https from 'https';
 import {Server} from 'https';
 import {SecureContextOptions} from "tls";
 import {EventEmitter} from "events";
-import * as https from 'https';
 import config from '../index';
 import CLI from './cli';
 
@@ -31,16 +31,14 @@ export default class WebSocket extends EventEmitter {
 	}
 
 	public bindWebSocket(ws: WebSocketServer): void {
-		ws.on('connect', connection => {
-			CLI.connect(`New connection from ${connection.remoteAddress}`);
-			this.emit('connect', (connection: connection) => this.emit('connect', connection));
+		ws.on('connect', client => {
+			CLI.connect(`New connection from ${client.remoteAddress}`);
+			this.emit('connect', client);
 		});
 
 		ws.on('close', (connection: connection, reason: number, desc: string) => {
 			CLI.disconnect(`Received farewell from ${connection.remoteAddress}`);
-			this.emit('close',
-				(connection: connection, reason: number, desc: string) => this.emit('close', connection, reason, desc)
-			)
+			this.emit('close', client, reason, desc)
 		});
 
 		function originIsAllowed(origin: string) {

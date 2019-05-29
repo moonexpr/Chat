@@ -1,4 +1,5 @@
 import Message from "./Message";
+import {IMessageUser} from "./IMessageUser";
 
 export default class MessageUser extends Message {
 	data: IMessageUser;

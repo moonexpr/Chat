@@ -1,7 +1,8 @@
 import {SecureContextOptions} from "tls";
 import WebSocket from "./WebSocket";
 import Message from "./Message";
-import CLI from "./CLI";
+import {connection} from "websocket";
+import {MessageType} from "./MessageType";
 
 
 export default class Daemon extends WebSocket {
@@ -10,21 +11,29 @@ export default class Daemon extends WebSocket {
 		super(listenPort, options);
 	}
 
-	public BroadcastPayload(message: Message): void {
-		let payload = JSON.stringify(message.data);
-
-
-		CLI.info(payload);
-
-		this.getClients().forEach(client => client.send(payload));
+	private sendMessage(message: string, client: connection): void {
+		client.send(message);
 	}
 
-	public BroadcastMessage(message: string): void {
+	public sendPayload(message: Message, client: connection): void {
+		let payload = JSON.stringify(message.data);
+
+		this.sendMessage(payload, client);
+	}
+
+
+	public broadcastPayload(message: Message): void {
+		let payload = JSON.stringify(message.data);
+
+		this.getClients().forEach(client => this.sendMessage(payload, client));
+	}
+
+	public broadcastMessage(message: string): void {
 		let msg = new Message({
 			'type': MessageType.Host,
 			'content': message,
 		});
 
-		this.BroadcastPayload(msg);
+		this.broadcastPayload(msg);
 	}
 }

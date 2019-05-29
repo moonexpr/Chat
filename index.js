@@ -14,6 +14,8 @@ var fs = __importStar(require("fs"));
 var CLI_1 = __importDefault(require("./lib/CLI"));
 var Daemon_1 = __importDefault(require("./lib/Daemon"));
 var MessageUser_1 = __importDefault(require("./lib/MessageUser"));
+var Message_1 = __importDefault(require("./lib/Message"));
+var MessageType_1 = require("./lib/MessageType");
 var config = {
     'version': '1.0'
 };
@@ -25,11 +27,21 @@ var daemon = new Daemon_1.default(8443, {
     key: fs.readFileSync('certs/key.pem'),
     passphrase: 'Aperture1!',
 });
+daemon.on('connect', function (client) {
+    daemon.sendPayload(new Message_1.default({
+        'type': MessageType_1.MessageType.Host,
+        'content': 'test host message',
+    }), client);
+    daemon.sendPayload(new Message_1.default({
+        'type': MessageType_1.MessageType.Network,
+        'content': 'test net message',
+    }), client);
+});
 daemon.on('message', function (message, connection) {
     CLI_1.default.log(connection.remoteAddress + ": " + message.utf8Data, '@');
     var payload = message.utf8Data;
     if (payload != undefined) {
         var msg = MessageUser_1.default.fromJSON(JSON.parse(payload));
-        daemon.BroadcastPayload(msg);
+        daemon.broadcastPayload(msg);
     }
 });
