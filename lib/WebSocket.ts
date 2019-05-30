@@ -4,7 +4,7 @@ import * as https from 'https';
 import {Server} from 'https';
 import {SecureContextOptions} from "tls";
 import {EventEmitter} from "events";
-import config from '../index';
+import config from "./Configuration";
 import CLI from './cli';
 
 const httpsRequest = (request: IncomingMessage, response: ServerResponse) => {

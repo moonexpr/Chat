@@ -8,7 +8,8 @@ export enum Priority {
 }
 
 export interface IMessageInstruction {
+	id?: number, // Must be assigned upon broadcast
 	name: string,
-	additional_payload: string,
+	payload?: string,
 	priority?: Priority,
 }

@@ -6,6 +6,7 @@ import MessageUser from "./lib/MessageUser";
 import {MessageType} from "./lib/MessageType";
 import {Session} from "./lib/Session";
 import * as config from "./lib/Configuration";
+import {Instruction} from "./lib/Instruction";
 
 console.info(`chat. Webserver Daemon [Version ${config.default.version}]`);
 
@@ -17,15 +18,20 @@ const daemon = new Daemon(8443, {
 
 console.log('Copyright (c) 2019 John Chandara\n');
 
-daemon.on('begin_authorize', (client: connection, session: Session) =>
-	daemon.sendPayload({
-		type: MessageType.Host,
-		content: session.getToken(),
-		instruction: {
-			name: 'setToken',
-			additional_payload: '[]'
-		}
-	}, client));
+daemon.on('authorize', (client: connection, session: Session) => {
+
+	const getToken = new Instruction({
+		payload: session.getToken(),
+		name: 'setToken'
+	});
+
+	daemon.sendInstruction(getToken, client);
+
+	getToken.then(() =>
+		daemon.sendMessage( `Hello, my name is ${require('os').hostname()} and I will be your server for this evening.`, client)
+	);
+});
+
 
 daemon.on('chat', (session: Session, message: MessageUser) => {
 	CLI.log(`${message.fullname}: ${message.getContent()}`, '@');

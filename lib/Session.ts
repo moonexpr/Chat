@@ -1,7 +1,6 @@
 import {connection} from 'websocket';
 import * as config from "./Configuration";
 
-
 const TokenGenerator = require('token-generator')({
 	salt: config.default.token_salt,
 	timestampMap: config.default.token_map,
