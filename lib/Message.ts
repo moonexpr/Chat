@@ -1,16 +1,24 @@
 import {IMessage} from './IMessage';
+import {IMessageInstruction} from "./IMessageInstruction";
+import {MessageType} from "./MessageType";
 
-export default class Message {
+export default class Message implements IMessage {
+	content: string;
+	type: MessageType;
+	instruction?: IMessageInstruction;
 
-	data: IMessage;
+	constructor(msg: IMessage) {
+		this.content = msg.content;
+		this.type = msg.type;
 
-	constructor(message: IMessage) {
-		this.data = message;
+		if (msg.instruction != undefined) {
+			this.instruction = msg.instruction;
+		}
 	}
 
-	public getContent = (): string => this.data.content;
+	public getContent = (): string => this.content;
 
-	public static fromJSON(arrJson: IMessage) {
-		return new Message(arrJson);
+	public static fromJSON(msg: IMessage) {
+		return new Message(msg);
 	}
 }

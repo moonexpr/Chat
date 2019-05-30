@@ -6,6 +6,7 @@ import {MessageType} from "./MessageType";
 import {Session} from "./Session";
 import MessageUser from "./MessageUser";
 import {IMessageUser} from "./IMessageUser";
+import {IMessage} from "./IMessage";
 
 
 export default class Daemon extends WebSocket {
@@ -29,10 +30,21 @@ export default class Daemon extends WebSocket {
 		let session: Session | undefined = this.sessions.get(client.remoteAddress),
 			payload: MessageUser = MessageUser.fromJSON(<IMessageUser>JSON.parse(message.utf8Data));
 
-		if (session != undefined && session.isValidToken(payload.getToken())) {
+		if (session == undefined) {
+			this.sendPayload({
+				type: MessageType.Host,
+				content: 'It seems somehow by pure bad luck you did something weird with our network, let\'s reconnect you...',
+			}, client);
+
+			client.close();
+
+			return;
+		}
+
+		if (session.isValidToken(payload.getToken())) {
 			this.emit('chat', session, payload);
 		} else {
-			this.emit('badchat', client, payload);
+			this.emit('badchat', session, payload);
 		}
 	}
 
@@ -40,7 +52,7 @@ export default class Daemon extends WebSocket {
 		const session = new Session(client);
 		this.sessions.set(client.remoteAddress, session);
 
-		this.emit('authorize', client, session);
+		this.emit('begin_authorize', client, session);
 
 		return session;
 	}
@@ -53,14 +65,14 @@ export default class Daemon extends WebSocket {
 		client.send(message);
 	}
 
-	public sendPayload(message: Message, client: connection): void {
-		let payload = JSON.stringify(message.data);
+	public sendPayload<T extends IMessage>(message: T, client: connection): void {
+		let payload = JSON.stringify(message);
 
 		Daemon.sendMessage(payload, client);
 	}
 
-	public broadcastPayload(message: Message): void {
-		let payload = JSON.stringify(message.data);
+	public broadcastPayload<T extends IMessage> (message: T): void {
+		let payload = JSON.stringify(message);
 
 		this.getClients().forEach(client => Daemon.sendMessage(payload, client));
 	}

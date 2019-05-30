@@ -1,12 +1,11 @@
 import {IncomingMessage, ServerResponse} from 'http';
-import {client, connection, IMessage, server as WebSocketServer} from 'websocket';
+import {connection, IMessage, request, server as WebSocketServer} from 'websocket';
 import * as https from 'https';
 import {Server} from 'https';
 import {SecureContextOptions} from "tls";
 import {EventEmitter} from "events";
 import config from '../index';
 import CLI from './cli';
-import {Session} from "./Session";
 
 const httpsRequest = (request: IncomingMessage, response: ServerResponse) => {
 	console.info(new Date() + ' : Received request for resource ' + request.url);
@@ -31,6 +30,15 @@ export default class WebSocket extends EventEmitter {
 		this.bindWebSocket(this.ws)
 	}
 
+	private originIsAllowed(request: request) {
+		this.clients.forEach((client: connection) => {
+			if (client.remoteAddress == request.remoteAddress)
+				return false;
+		});
+
+		return true;
+	}
+
 	public bindWebSocket(ws: WebSocketServer): void {
 		ws.on('connect', client => {
 			CLI.connect(`New connection from ${client.remoteAddress}`);
@@ -42,16 +50,12 @@ export default class WebSocket extends EventEmitter {
 			this.emit('close', client, reason, desc)
 		});
 
-		function originIsAllowed(origin: string) {
-			return true;
-		}
 
-		ws.on('request', request => {
-			if (!originIsAllowed(request.origin)) {
+		ws.on('request', (request: request) => {
+			if (!this.originIsAllowed(request)) {
 				// Make sure we only accept requests from an allowed origin
 				request.reject();
-				console.log('\tConnection rejected.');
-				CLI.warn('Connection Rejected');
+				CLI.log('\t♥ Connection Rejected');
 				return;
 			}
 

@@ -1,6 +1,11 @@
 import {connection} from 'websocket';
-import config from '../index';
-import * as token from 'token';
+import * as config from "./Configuration";
+
+
+const TokenGenerator = require('token-generator')({
+	salt: config.default.token_salt,
+	timestampMap: config.default.token_map,
+});
 
 export class Session {
 	client: connection;
@@ -8,14 +13,12 @@ export class Session {
 
 	constructor(client: connection) {
 		this.client = client;
-		// this.token = token.generate(`${client.remoteAddress} ${config.token_hash}`);
-		this.token = token.generate('test', {
-			'secret': config.token_hash,
-		});
+		this.token = TokenGenerator.generate();
 	}
 
-	public isValidToken(tk: string): boolean {
-		return token.verify(tk, this.token);
+	public isValidToken(token: string): boolean {
+		// return TokenGenerator.isValid(token);
+		return token === this.getToken();
 	}
 
 	public getToken = (): string => this.token;
