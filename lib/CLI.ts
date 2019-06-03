@@ -29,5 +29,4 @@ export default class CLI {
 	public static connect = (strMessage: string) => CLI.append(strMessage, '->');
 	public static disconnect = (strMessage: string) => CLI.append(strMessage, '<-');
 	public static warn = (strMessage: string) => CLI.append(strMessage, '/!\\');
-	public static error = (strMessage: string) => CLI.append(strMessage, '/!\\ Error!');
 }

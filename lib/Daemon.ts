@@ -1,14 +1,14 @@
 import {SecureContextOptions} from "tls";
-import WebSocket from "./WebSocket";
-import Message from "./Message";
 import {connection, IMessage as IncomingMessage} from "websocket";
 import {MessageType} from "./MessageType";
 import {Session} from "./Session";
-import MessageUser from "./MessageUser";
-import {IMessageUser} from "./IMessageUser";
-import {IMessage} from "./IMessage";
+import {IMessageUser} from "./models/IMessageUser";
+import {IMessage} from "./models/IMessage";
 import {Instruction} from "./Instruction";
-import {IMessageInstruction} from "./IMessageInstruction";
+import WebSocket from "./WebSocket";
+import Message from "./Message";
+import MessageUser from "./MessageUser";
+import ISessionPayload from "./models/ISessionPayload";
 
 
 export default class Daemon extends WebSocket {
@@ -23,39 +23,52 @@ export default class Daemon extends WebSocket {
 		this.instructions = new Map();
 
 		this.on('connect', this.addToken);
-		this.on('close', this.delToken);
+		this.on('authorize', this.authorize);
 		this.on('message', this.resolveToken);
 		this.on('process', this.processMessage);
+		this.on('close', this.delToken);
+	}
+
+	private startSession(message: IncomingMessage, client: connection): ISessionPayload {
+		let session: Session | undefined = this.sessions.get(client.remoteAddress),
+			payload: MessageUser;
+
+		if (session === undefined || session.identity === undefined || message.utf8Data === undefined) {
+			client.close();
+			throw Error('It seems somehow by pure bad luck you did something weird with our network, let\'s reconnect you...');
+		}
+
+		try {
+			return {
+				session: session,
+				payload: new MessageUser(session.identity, <IMessageUser>JSON.parse(message.utf8Data)),
+				timestamp: new Date(),
+			};
+		} catch (_) {
+			throw Error('Your chat client is misconfigured, please contact your local developer to get this fixed!')
+		}
+
 	}
 
 	private resolveToken(message: IncomingMessage, client: connection): void {
-		if (message.utf8Data == undefined)
-			return;
+		try {
+			let sessionMessage = this.startSession(message, client);
+			let session = sessionMessage.session,
+				payload = sessionMessage.payload;
 
+			if (!session.isValidToken(payload.getToken())) {
+				this.emit('badchat', sessionMessage);
+			}
 
-		let session: Session | undefined = this.sessions.get(client.remoteAddress),
-			payload: MessageUser = MessageUser.fromJSON(<IMessageUser>JSON.parse(message.utf8Data));
-
-		if (session == undefined) {
-			this.sendPayload({
-				type: MessageType.Host,
-				content: 'It seems somehow by pure bad luck you did something weird with our network, let\'s reconnect you...',
-			}, client);
-
-			client.close();
-
-			return;
+			this.emit('process', sessionMessage);
+		} catch (_) {
+			this.sendMessage((<Error>_).message, client);
 		}
-
-
-		if (!session.isValidToken(payload.getToken())) {
-			this.emit('badchat', session, payload);
-		}
-
-		this.emit('process', session, payload);
 	}
 
-	private processMessage(session: Session, payload: MessageUser): void {
+	private processMessage(sessionMessage: ISessionPayload): void {
+		let payload = sessionMessage.payload;
+
 		if (payload.instruction && payload.instruction.id != undefined) {
 			const instr = this.instructions.get(payload.instruction.id);
 			if (instr != undefined) {
@@ -65,7 +78,7 @@ export default class Daemon extends WebSocket {
 			return;
 		}
 
-		this.emit('chat', session, payload);
+		this.emit('chat', sessionMessage);
 	}
 
 	private addToken(client: connection): Session {
@@ -75,6 +88,30 @@ export default class Daemon extends WebSocket {
 		this.sessions.set(client.remoteAddress, session);
 
 		return session;
+	}
+
+	private authorize(client: connection, session: Session): void {
+		const getToken = new Instruction({
+			payload: session.getToken(),
+			name: 'setToken'
+		});
+
+		const getProfile = new Instruction({
+			payload: '',
+			name: 'getProfile'
+		});
+
+		this.sendInstruction(getToken, client)
+			.then(() => this.sendInstruction(getProfile, client).then((msg: IMessage) => {
+				if (msg.instruction !== undefined && msg.instruction.payload !== undefined) {
+					try {
+						session.setIdentity(<Identity>JSON.parse(msg.instruction.payload));
+					} catch (exception) {
+						this.sendMessage('Your identity cannot be validated, please contact your local developer.', client);
+						client.close();
+					}
+				}
+			}));
 	}
 
 	private delToken(client: connection): void {
@@ -90,6 +127,7 @@ export default class Daemon extends WebSocket {
 			type: MessageType.Host,
 			content: '',
 			instruction: instr,
+			timestamp: new Date()
 		}, client);
 
 		this.instructions.set(instr.getId(), instr);
@@ -100,13 +138,14 @@ export default class Daemon extends WebSocket {
 	public sendMessage(text: string, client: connection): void {
 		this.sendPayload({
 			type: MessageType.Host,
-			content: text
+			content: text,
+			timestamp: new Date(),
 		}, client);
 	}
 
 
 	public sendPayload<T extends IMessage>(message: T, client: connection): void {
-		let payload = JSON.stringify(message);
+		let payload = JSON.stringify(message.encode());
 
 		Daemon.sendMessage(payload, client);
 	}
@@ -121,6 +160,7 @@ export default class Daemon extends WebSocket {
 		let msg = new Message({
 			'type': MessageType.Host,
 			'content': message,
+			timestamp: new Date(),
 		});
 
 		this.broadcastPayload(msg);

@@ -1,5 +1,5 @@
 import Message from "./Message";
-import { IMessageUser } from "./IMessageUser";
+import { IMessageUser } from "./models/IMessageUser";
 export default class MessageUser extends Message {
     data: IMessageUser;
     constructor(message: IMessageUser);

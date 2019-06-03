@@ -1,34 +1,39 @@
 import Message from "./Message";
-import {IMessageUser} from "./IMessageUser";
+import {IMessageUser} from "./models/IMessageUser";
 import {MessageType} from "./MessageType";
 
 export default class MessageUser extends Message implements IMessageUser {
-	email: string;
-	fullname: string;
-	nickname: string;
+	identity: Identity;
 	token: string;
+	nickname: string;
 
-	constructor(msg: IMessageUser) {
+	constructor(id: Identity, msg: IMessageUser) {
 		super(msg);
 
-		this.email = msg.email;
-		this.fullname = msg.fullname;
-		this.nickname = msg.nickname;
+		this.identity = id;
 		this.token = msg.token;
-
 		this.type = MessageType.UGC;
+
+		this.nickname = this.identity.firstname;
 	}
 
-	public getNick = (): string => this.nickname;
-	public getFullName = (): string => this.fullname;
-	public getEmail = (): string => this.email;
+	// public getNick = (): string => this.nickname;
+	public getNick = (msg: string): void => console.log(msg);
+
+
+	public getNickNLambda (msg: string): void {
+		console.log(msg);
+	}
+
+	public getIdentity = (): Identity => this.identity;
 	public getToken = (): string => this.token;
 
 	public setNick = (newName: string): void => {
 		this.nickname = newName
 	};
 
-	public static fromJSON(msg: IMessageUser) {
-		return new MessageUser(msg);
+	encode(): void {
+		// Strip the token off before transmitting the packet.
+		this.token = '';
 	}
 }

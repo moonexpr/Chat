@@ -8,6 +8,7 @@ const TokenGenerator = require('token-generator')({
 
 export class Session {
 	client: connection;
+	identity: Identity | undefined;
 	token: string;
 
 	constructor(client: connection) {
@@ -18,6 +19,14 @@ export class Session {
 	public isValidToken(token: string): boolean {
 		// return TokenGenerator.isValid(token);
 		return token === this.getToken();
+	}
+
+	public setIdentity(identity: Identity): void {
+		this.identity = identity;
+	}
+
+	public getIdentity(): Identity | undefined {
+		return this.identity;
 	}
 
 	public getToken = (): string => this.token;

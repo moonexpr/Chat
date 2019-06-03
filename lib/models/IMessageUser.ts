@@ -1,8 +1,7 @@
 import {IMessage} from './IMessage';
 
 export interface IMessageUser extends IMessage {
+	identity: Identity;
 	nickname: string;
-	fullname: string;
-	email: string;
 	token: string;
 }

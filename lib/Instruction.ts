@@ -1,5 +1,5 @@
-import {IMessageInstruction, Priority} from "./IMessageInstruction";
-import {IMessage} from "./IMessage";
+import {IMessageInstruction, Priority} from "./models/IMessageInstruction";
+import {IMessage} from "./models/IMessage";
 import Stack from "ts-data.stack";
 
 export class Instruction implements IMessageInstruction {
