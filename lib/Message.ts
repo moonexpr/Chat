@@ -18,8 +18,4 @@ export default class Message implements IMessage {
 			this.instruction = msg.instruction;
 		}
 	}
-
-	encode(): void {
-
-	}
 }

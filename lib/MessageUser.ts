@@ -17,13 +17,7 @@ export default class MessageUser extends Message implements IMessageUser {
 		this.nickname = this.identity.firstname;
 	}
 
-	// public getNick = (): string => this.nickname;
-	public getNick = (msg: string): void => console.log(msg);
-
-
-	public getNickNLambda (msg: string): void {
-		console.log(msg);
-	}
+	public getNick = (): string => this.nickname;
 
 	public getIdentity = (): Identity => this.identity;
 	public getToken = (): string => this.token;
@@ -31,9 +25,4 @@ export default class MessageUser extends Message implements IMessageUser {
 	public setNick = (newName: string): void => {
 		this.nickname = newName
 	};
-
-	encode(): void {
-		// Strip the token off before transmitting the packet.
-		this.token = '';
-	}
 }

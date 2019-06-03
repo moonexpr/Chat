@@ -145,7 +145,7 @@ export default class Daemon extends WebSocket {
 
 
 	public sendPayload<T extends IMessage>(message: T, client: connection): void {
-		let payload = JSON.stringify(message.encode());
+		let payload = JSON.stringify(message);
 
 		Daemon.sendMessage(payload, client);
 	}

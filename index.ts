@@ -24,22 +24,13 @@ daemon.on('authorize', (client: connection, session: Session) => {
 });
 
 
-// daemon.on('chat', (sessionMessage: ISessionPayload) => {
-// 	let message = sessionMessage.payload;
-//
-// 	CLI.log(`${message.getIdentity().fullname}: ${message.getContent()}`, '@');
-//
-// 	daemon.broadcastPayload(message);
-// });
-
-daemon.on('chat', function (sessionMessage: ISessionPayload) {
+daemon.on('chat', (sessionMessage: ISessionPayload) => {
 	let message = sessionMessage.payload;
 
-	CLI.log(`${message.nickname}: ${message.getContent()}`, '@');
+	CLI.log(`${message.getIdentity().fullname}: ${message.content}`, '@');
 
 	daemon.broadcastPayload(message);
 });
-
 
 daemon.on('badchat', (sessionMessage: ISessionPayload) => {
 	let session = sessionMessage.session,

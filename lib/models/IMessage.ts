@@ -6,6 +6,4 @@ export interface IMessage {
 	timestamp: Date,
 	content: string;
 	instruction?: IMessageInstruction;
-
-	encode(): void;
 }
