@@ -1,0 +1,12 @@
+{
+	"extends": [
+		"tslint-clean-code"
+	],
+	"rules": {
+		"newspaper-order": true,
+		"prefer-dry-conditionals": true,
+		"no-complex-conditionals": true,
+		"no-any": true,
+		"no-magic-numbers": true
+	}
+}

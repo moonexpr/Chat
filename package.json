@@ -11,11 +11,15 @@
 	"author": "John Chandara",
 	"license": "MIT",
 	"dependencies": {
-		"@types/node": "^12.0.2",
+		"@types/node": "^12.0.4",
 		"@types/websocket": "0.0.40",
 		"token-generator": "^1.0.0",
 		"ts-data.stack": "^1.0.6",
-		"typescript": "^3.4.5",
 		"websocket": "^1.0.28"
+	},
+	"devDependencies": {
+		"tslint": "^5.17.0",
+		"tslint-clean-code": "^0.2.9",
+		"typescript": "^3.5.1"
 	}
 }

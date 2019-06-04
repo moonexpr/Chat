@@ -1,168 +1,187 @@
-import {SecureContextOptions} from "tls";
+import {SecureContextOptions}                    from "tls";
 import {connection, IMessage as IncomingMessage} from "websocket";
-import {MessageType} from "./MessageType";
-import {Session} from "./Session";
-import {IMessageUser} from "./models/IMessageUser";
-import {IMessage} from "./models/IMessage";
-import {Instruction} from "./Instruction";
-import WebSocket from "./WebSocket";
-import Message from "./Message";
-import MessageUser from "./MessageUser";
-import ISessionPayload from "./models/ISessionPayload";
+import {Instruction}                             from "./Instruction";
+import Message                                   from "./Message";
+import {MessageType}                             from "./MessageType";
+import MessageUser                               from "./MessageUser";
+import {IMessage}                                from "./models/IMessage";
+import {IMessageUser}                            from "./models/IMessageUser";
+import ISessionPayload                           from "./models/ISessionPayload";
+import {Session}                                 from "./Session";
+import WebSocket                                 from "./WebSocket";
 
+export default class Daemon extends WebSocket
+{
 
-export default class Daemon extends WebSocket {
+    sessions: Map<string, Session>;
+    instructions: Map<number, Instruction>;
 
-	sessions: Map<string, Session>;
-	instructions: Map<number, Instruction>;
+    constructor(listenPort: number, options: SecureContextOptions)
+    {
+        super(listenPort, options);
 
-	constructor(listenPort: number, options: SecureContextOptions) {
-		super(listenPort, options);
+        this.sessions = new Map();
+        this.instructions = new Map();
 
-		this.sessions = new Map();
-		this.instructions = new Map();
+        this.on('connect', this.addToken);
+        this.on('authorize', this.authorize);
+        this.on('message', this.resolveToken);
+        this.on('process', this.processMessage);
+        this.on('close', this.delToken);
+    }
 
-		this.on('connect', this.addToken);
-		this.on('authorize', this.authorize);
-		this.on('message', this.resolveToken);
-		this.on('process', this.processMessage);
-		this.on('close', this.delToken);
-	}
+    private static sendMessage(message: string, client: connection): void
+    {
+        client.send(message);
+    }
 
-	private startSession(message: IncomingMessage, client: connection): ISessionPayload {
-		let session: Session | undefined = this.sessions.get(client.remoteAddress),
-			payload: MessageUser;
+    public sendInstruction<T extends Instruction>(instr: Instruction, client: connection): Instruction
+    {
+        this.sendPayload({
+            type: MessageType.Host,
+            content: '',
+            instruction: instr,
+            timestamp: new Date(),
+        }, client);
 
-		if (session === undefined || session.identity === undefined || message.utf8Data === undefined) {
-			client.close();
-			throw Error('It seems somehow by pure bad luck you did something weird with our network, let\'s reconnect you...');
-		}
+        this.instructions.set(instr.getId(), instr);
 
-		try {
-			return {
-				session: session,
-				payload: new MessageUser(session.identity, <IMessageUser>JSON.parse(message.utf8Data)),
-				timestamp: new Date(),
-			};
-		} catch (_) {
-			throw Error('Your chat client is misconfigured, please contact your local developer to get this fixed!')
-		}
+        return instr;
+    }
 
-	}
+    public sendMessage(text: string, client: connection): void
+    {
+        this.sendPayload({
+            type: MessageType.Host,
+            content: text,
+            timestamp: new Date(),
+        }, client);
+    }
 
-	private resolveToken(message: IncomingMessage, client: connection): void {
-		try {
-			let sessionMessage = this.startSession(message, client);
-			let session = sessionMessage.session,
-				payload = sessionMessage.payload;
+    public sendPayload<T extends IMessage>(message: T, client: connection): void
+    {
+        let payload = JSON.stringify(message);
 
-			if (!session.isValidToken(payload.getToken())) {
-				this.emit('badchat', sessionMessage);
-			}
+        Daemon.sendMessage(payload, client);
+    }
 
-			this.emit('process', sessionMessage);
-		} catch (_) {
-			this.sendMessage((<Error>_).message, client);
-		}
-	}
+    public broadcastPayload<T extends IMessage>(message: T): void
+    {
+        let payload = JSON.stringify(message);
 
-	private processMessage(sessionMessage: ISessionPayload): void {
-		let payload = sessionMessage.payload;
+        this.getClients().forEach(client => Daemon.sendMessage(payload, client));
+    }
 
-		if (payload.instruction && payload.instruction.id != undefined) {
-			const instr = this.instructions.get(payload.instruction.id);
-			if (instr != undefined) {
-				instr.resolve(payload)
-			}
+    public broadcastMessage(message: string): void
+    {
+        let msg = new Message({
+            'type': MessageType.Host,
+            'content': message,
+            timestamp: new Date(),
+        });
 
-			return;
-		}
+        this.broadcastPayload(msg);
+    }
 
-		this.emit('chat', sessionMessage);
-	}
+    private startSession(message: IncomingMessage, client: connection): ISessionPayload
+    {
+        let session: Session | undefined = this.sessions.get(client.remoteAddress),
+            payload: MessageUser;
 
-	private addToken(client: connection): Session {
-		const session = new Session(client);
-		this.emit('authorize', client, session);
+        if (session === undefined || message.utf8Data === undefined)
+        {
+            throw Error('It seems somehow by pure bad luck you did something weird with our network, please reconnect.');
+        }
 
-		this.sessions.set(client.remoteAddress, session);
+        payload = MessageUser.fromNetwork(
+            <IMessageUser> JSON.parse(message.utf8Data),
+            session);
 
-		return session;
-	}
+        try
+        {
+            return {
+                session: session,
+                payload: payload,
+            };
+        } catch (_)
+        {
+            throw Error('Your chat client is misconfigured, please contact your local developer to get this fixed!');
+        }
+    }
 
-	private authorize(client: connection, session: Session): void {
-		const getToken = new Instruction({
-			payload: session.getToken(),
-			name: 'setToken'
-		});
+    private resolveToken(message: IncomingMessage, client: connection): void
+    {
+        try
+        {
+            let sessionMessage = this.startSession(message, client);
+            let session = sessionMessage.session,
+                payload = sessionMessage.payload;
 
-		const getProfile = new Instruction({
-			payload: '',
-			name: 'getProfile'
-		});
+            if (!session.isValidToken(payload.token))
+            {
+                this.emit('badchat', sessionMessage);
+            }
 
-		this.sendInstruction(getToken, client)
-			.then(() => this.sendInstruction(getProfile, client).then((msg: IMessage) => {
-				if (msg.instruction !== undefined && msg.instruction.payload !== undefined) {
-					try {
-						session.setIdentity(<Identity>JSON.parse(msg.instruction.payload));
-					} catch (exception) {
-						this.sendMessage('Your identity cannot be validated, please contact your local developer.', client);
-						client.close();
-					}
-				}
-			}));
-	}
+            this.emit('process', sessionMessage);
+        } catch (_)
+        {
+            this.sendMessage((<Error> _).message, client);
+        }
+    }
 
-	private delToken(client: connection): void {
-		this.sessions.delete(client.remoteAddress);
-	}
+    private processMessage(sessionMessage: ISessionPayload): void
+    {
+        let payload = sessionMessage.payload;
 
-	private static sendMessage(message: string, client: connection): void {
-		client.send(message);
-	}
+        if (payload.instruction && payload.instruction.id != undefined)
+        {
+            const instr = this.instructions.get(payload.instruction.id);
 
-	public sendInstruction<T extends Instruction>(instr: Instruction, client: connection): Instruction {
-		this.sendPayload({
-			type: MessageType.Host,
-			content: '',
-			instruction: instr,
-			timestamp: new Date()
-		}, client);
+            if (instr != undefined)
+            {
+                instr.resolve(payload);
+            }
 
-		this.instructions.set(instr.getId(), instr);
+            return;
+        }
 
-		return instr;
-	}
+        this.emit('chat', sessionMessage);
+    }
 
-	public sendMessage(text: string, client: connection): void {
-		this.sendPayload({
-			type: MessageType.Host,
-			content: text,
-			timestamp: new Date(),
-		}, client);
-	}
+    private addToken(client: connection): Session
+    {
+        const session = new Session(client);
+        this.emit('authorize', client, session);
 
+        this.sessions.set(client.remoteAddress, session);
 
-	public sendPayload<T extends IMessage>(message: T, client: connection): void {
-		let payload = JSON.stringify(message);
+        return session;
+    }
 
-		Daemon.sendMessage(payload, client);
-	}
+    private authorize(client: connection, session: Session): void
+    {
+        const getToken = new Instruction({
+            payload: session.getToken(),
+            name: 'setToken'
+        });
 
-	public broadcastPayload<T extends IMessage>(message: T): void {
-		let payload = JSON.stringify(message);
+        const getProfile = new Instruction({
+            payload: '',
+            name: 'getProfile'
+        });
 
-		this.getClients().forEach(client => Daemon.sendMessage(payload, client));
-	}
+        this.sendInstruction(getToken, client)
+            .then(() => this.sendInstruction(getProfile, client).then((msg: IMessage) =>
+            {
+                if (msg.instruction !== undefined && msg.instruction.payload !== undefined)
+                {
+                    session.setIdentity(<Identity> JSON.parse(msg.instruction.payload));
+                }
+            }));
+    }
 
-	public broadcastMessage(message: string): void {
-		let msg = new Message({
-			'type': MessageType.Host,
-			'content': message,
-			timestamp: new Date(),
-		});
-
-		this.broadcastPayload(msg);
-	}
+    private delToken(client: connection): void
+    {
+        this.sessions.delete(client.remoteAddress);
+    }
 }

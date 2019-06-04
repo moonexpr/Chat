@@ -1,34 +1,48 @@
 import {connection} from 'websocket';
-import * as config from "./Configuration";
+import * as config  from "./Configuration";
 
 const TokenGenerator = require('token-generator')({
-	salt: config.default.token_salt,
-	timestampMap: config.default.token_map,
+    salt: config.default.token_salt,
+    timestampMap: config.default.token_map,
 });
 
-export class Session {
-	client: connection;
-	identity: Identity | undefined;
-	token: string;
+export const IdentityDefault = <Identity> {
+    firstname: '',
+    middlename: '',
+    lastname: '',
+    fullname: '',
+    email: '',
+    netid: '',
+};
 
-	constructor(client: connection) {
-		this.client = client;
-		this.token = TokenGenerator.generate();
-	}
+export class Session
+{
+    client: connection;
+    identity: Identity | undefined;
+    token: string;
 
-	public isValidToken(token: string): boolean {
-		// return TokenGenerator.isValid(token);
-		return token === this.getToken();
-	}
+    constructor(client: connection)
+    {
+        this.client = client;
+        this.token = TokenGenerator.generate();
+    }
 
-	public setIdentity(identity: Identity): void {
-		this.identity = identity;
-	}
+    public isValidToken(token: string): boolean
+    {
+        // return TokenGenerator.isValid(token);
+        return token === this.getToken();
+    }
 
-	public getIdentity(): Identity | undefined {
-		return this.identity;
-	}
+    public setIdentity(identity: Identity): void
+    {
+        this.identity = identity;
+    }
 
-	public getToken = (): string => this.token;
-	public getClient = (): connection => this.client;
+    public getIdentity(): Identity | undefined
+    {
+        return this.identity;
+    }
+
+    public getToken = (): string => this.token;
+    public getClient = (): connection => this.client;
 }

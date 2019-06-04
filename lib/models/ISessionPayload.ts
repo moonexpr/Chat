@@ -1,8 +1,8 @@
-import {Session} from "../Session";
-import MessageUser from "../MessageUser";
+import {Session}      from "../Session";
+import {IMessageUser} from "./IMessageUser";
 
-export default interface ISessionPayload {
-	session: Session;
-	payload: MessageUser;
-	timestamp: Date;
+export default interface ISessionPayload
+{
+    session: Session;
+    payload: IMessageUser;
 }

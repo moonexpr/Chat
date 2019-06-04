@@ -1,3 +1,0 @@
-interface ISerialisable {
-	FromJSON: ISerialisable;
-}
