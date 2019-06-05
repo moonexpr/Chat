@@ -4,6 +4,7 @@ import {Instruction}                             from "./Instruction";
 import Message                                   from "./Message";
 import {MessageType}                             from "./MessageType";
 import MessageUser                               from "./MessageUser";
+import IClientPayload                            from "./models/IClientPayload";
 import {IMessage}                                from "./models/IMessage";
 import {IMessageUser}                            from "./models/IMessageUser";
 import ISessionPayload                           from "./models/ISessionPayload";
@@ -94,7 +95,7 @@ export default class Daemon extends WebSocket
         }
 
         payload = MessageUser.fromNetwork(
-            <IMessageUser> JSON.parse(message.utf8Data),
+            <IClientPayload> JSON.parse(message.utf8Data),
             session);
 
         try

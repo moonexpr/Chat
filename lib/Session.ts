@@ -6,7 +6,7 @@ const TokenGenerator = require('token-generator')({
     timestampMap: config.default.token_map,
 });
 
-export const IdentityDefault = <Identity> {
+export const IdentityDefault:Identity = {
     firstname: '',
     middlename: '',
     lastname: '',

@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a9d3d2e-7e5c-460a-9240-00ffcea8b93a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Daemon.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Daemon.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Session.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/IMessage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/IMessage.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,14 +21,14 @@
     <favorites_list name="chat-daemon" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="-306">
+              <caret column="7" selection-start-column="7" selection-end-column="7" />
               <folding>
-                <element signature="e#0#25#0" expanded="true" />
+                <element signature="e#0#33#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -36,11 +37,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/WebSocket.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="798">
+            <state relative-caret-position="-152">
               <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Session.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-152">
+              <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
               <folding>
-                <element signature="e#0#53#0" expanded="true" />
-                <marker date="1559235197259" expanded="true" signature="1283:1415" ph="..." />
+                <element signature="e#0#37#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -49,11 +58,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/Daemon.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="27" column="42" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="357">
+              <caret line="112" column="29" selection-start-line="112" selection-start-column="29" selection-end-line="112" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -61,7 +67,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/@types/websocket/index.d.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
+            <state relative-caret-position="4199">
               <caret line="258" column="4" selection-start-line="258" selection-start-column="4" selection-end-line="258" selection-end-column="4" />
             </state>
           </provider>
@@ -146,7 +152,6 @@
         <option value="$PROJECT_DIR$/lib/MessageUser.ts" />
         <option value="$PROJECT_DIR$/lib/WebSocket.ts" />
         <option value="V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/app/config/router.php" />
-        <option value="$PROJECT_DIR$/lib/Session.ts" />
         <option value="$PROJECT_DIR$/lib/IMessageInstruction.ts" />
         <option value="$PROJECT_DIR$/lib/Instruction.ts" />
         <option value="$PROJECT_DIR$/index.ts" />
@@ -171,6 +176,7 @@
         <option value="V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/dev-stats/views/dev-stats/mvc/index/index.phtml" />
         <option value="V:/its/wdchandara.wd.its.iastate.edu/www/modules/dev-stats/css/dev-stats.css" />
         <option value="$PROJECT_DIR$/lib/Daemon.ts" />
+        <option value="$PROJECT_DIR$/lib/Session.ts" />
       </list>
     </option>
   </component>
@@ -199,36 +205,6 @@
           <expand>
             <path>
               <item name="chat-daemon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wdchandara.wd.its.iastate" type="9c53a853:ProjectViewModuleGroupNode" />
-            </path>
-            <path>
-              <item name="chat-daemon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wdchandara.wd.its.iastate" type="9c53a853:ProjectViewModuleGroupNode" />
-              <item name="wdchandara.wd.its.iastate.edu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chat-daemon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wdchandara.wd.its.iastate" type="9c53a853:ProjectViewModuleGroupNode" />
-              <item name="wdchandara.wd.its.iastate.edu" type="462c0819:PsiDirectoryNode" />
-              <item name="projects" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chat-daemon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wdchandara.wd.its.iastate" type="9c53a853:ProjectViewModuleGroupNode" />
-              <item name="wdchandara.wd.its.iastate.edu" type="462c0819:PsiDirectoryNode" />
-              <item name="projects" type="462c0819:PsiDirectoryNode" />
-              <item name="website" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chat-daemon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wdchandara.wd.its.iastate" type="9c53a853:ProjectViewModuleGroupNode" />
-              <item name="wdchandara.wd.its.iastate.edu" type="462c0819:PsiDirectoryNode" />
-              <item name="projects" type="462c0819:PsiDirectoryNode" />
-              <item name="website" type="462c0819:PsiDirectoryNode" />
-              <item name="module" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chat-daemon" type="b2602c69:ProjectViewProjectNode" />
               <item name="chat-daemon" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -249,7 +225,7 @@
     <property name="javascript.nodejs.core.library.configured.version" value="10.15.3" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
-    <property name="last_opened_file_path" value="V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/dev-stats" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -326,11 +302,12 @@
       <workItem from="1559155834239" duration="69839000" />
       <workItem from="1559566848072" duration="284000" />
       <workItem from="1559567142488" duration="975000" />
+      <workItem from="1559740709556" duration="141000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118326000" />
+    <option name="totallyTimeSpent" value="118467000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -343,10 +320,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1672" y="-8" width="1696" height="1026" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.5021521" side_tool="true" weight="0.20415647" />
       <window_info id="npm" order="1" sideWeight="0.50073856" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.49777117" visible="true" weight="0.23288509" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.49777117" visible="true" weight="0.23594132" />
       <window_info id="Structure" order="3" sideWeight="0.5022288" side_tool="true" weight="0.20415647" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.26203808" />
@@ -356,7 +334,7 @@
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="TypeScript" order="6" sideWeight="0.49938875" weight="0.32922733" />
       <window_info anchor="bottom" id="Find" order="7" weight="0.32922733" />
-      <window_info anchor="bottom" x="1107" y="343" width="1593" height="658" id="Run" order="8" sideWeight="0.49938875" weight="0.31354985" />
+      <window_info anchor="bottom" x="1107" y="343" width="1593" height="658" id="Run" order="8" sideWeight="0.49938875" visible="true" weight="0.31354985" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.39977604" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
@@ -488,16 +466,6 @@
     <entry file="file://$PROJECT_DIR$/lib/Instruction.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Session.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://V:/its/wdchandara.wd.its.iastate.edu/www/modules/dev-stats/js/socket.js" />
     <entry file="file://V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/dev-stats/public/js/lib.php" />
     <entry file="file://V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/dev-stats/public/js/message.js" />
@@ -505,23 +473,8 @@
     <entry file="file://$PROJECT_DIR$/lib/MessageUser.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/IMessageUser.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="6" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/IMessage.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="38" lean-forward="true" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/IMessageUser.ts" />
+    <entry file="file://$PROJECT_DIR$/lib/IMessage.ts" />
     <entry file="file://$PROJECT_DIR$/lib/Instruction.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -532,13 +485,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/IMessageInstruction.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/IMessageInstruction.ts" />
     <entry file="file://$PROJECT_DIR$/lib/MessageType.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -592,11 +539,12 @@
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="0.7951635846372689" x="439.5" y="341.5" />
+          <settings layout="Hierarchic Group" zoom="0.7951635846372689" x="440.0" y="342.0" />
           <SelectedNodes />
           <Categories>
             <Category>All</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
           <VISIBILITY>Details</VISIBILITY>
         </state>
       </provider>
@@ -1360,13 +1308,14 @@
               <point x="0.0" y="0.0" />
             </edge>
           </edges>
-          <settings layout="Hierarchic Group" zoom="0.40000000000000013" x="1970.0909090909074" y="546.6666666666667" />
+          <settings layout="Hierarchic Group" zoom="0.40000000000000013" x="1970.0" y="547.0" />
           <SelectedNodes>
             <node>$PROJECT_DIR$/lib/Daemon.ts#IMessage#351;C:/Users/wdchandara/PhpstormProjects/chat-daemon/lib/Daemon.ts#IMessageInstruction#431;C:/Users/wdchandara/PhpstormProjects/chat-daemon/lib/Daemon.ts#IMessageUser#306;C:/Users/wdchandara/PhpstormProjects/chat-daemon/lib/Daemon.ts#IncomingMessage#132;C:/Users/wdchandara/PhpstormProjects/chat-daemon/lib/Daemon.ts#Instruction#388;C:/Users/wdchandara/PhpstormProjects/chat-daemon/lib/Daemon.ts#Message#86;C:/Users/wdchandara/PhpstormProjects/chat-daemon/lib/Daemon.ts#MessageType#187;C:/Users/wdchandara/PhpstormProjects/chat-daemon/lib/Daemon.ts#MessageUser#264;C:/Users/wdchandara/PhpstormProjects/chat-daemon/lib/Daemon.ts#SecureContextOptions#8;C:/Users/wdchandara/PhpstormProjects/chat-daemon/lib/Daemon.ts#Session#230;C:/Users/wdchandara/PhpstormProjects/chat-daemon/lib/Daemon.ts#WebSocket#49;C:/Users/wdchandara/PhpstormProjects/chat-daemon/lib/Daemon.ts#connection#120;</node>
           </SelectedNodes>
           <Categories>
             <Category>All</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
           <VISIBILITY>Details</VISIBILITY>
         </state>
       </provider>
@@ -1384,11 +1333,12 @@
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="1.5" x="-178.83333333333331" y="60.66666666666666" />
+          <settings layout="Hierarchic Group" zoom="1.5" x="-179.0" y="61.0" />
           <SelectedNodes>
             <node>V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/tutorial/src</node>
           </SelectedNodes>
           <Categories />
+          <SCOPE>All</SCOPE>
           <VISIBILITY>private</VISIBILITY>
         </state>
       </provider>
@@ -1435,6 +1385,7 @@
             <node>V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/tutorial/src/Tutorial/Form</node>
           </SelectedNodes>
           <Categories />
+          <SCOPE>All</SCOPE>
           <VISIBILITY>private</VISIBILITY>
         </state>
       </provider>
@@ -1464,48 +1415,52 @@
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="203.5" y="203.5" />
+          <settings layout="Hierarchic Group" zoom="1.0" x="204.0" y="204.0" />
           <SelectedNodes />
           <Categories />
+          <SCOPE>All</SCOPE>
           <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@types/websocket/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4199">
+          <caret line="258" column="4" selection-start-line="258" selection-start-column="4" selection-end-line="258" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="-306">
+          <caret column="7" selection-start-column="7" selection-end-column="7" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/WebSocket.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
+        <state relative-caret-position="-152">
           <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-            <marker date="1559235197259" expanded="true" signature="1283:1415" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@types/websocket/index.d.ts">
+    <entry file="file://$PROJECT_DIR$/lib/Session.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="258" column="4" selection-start-line="258" selection-start-column="4" selection-end-line="258" selection-end-column="4" />
+        <state relative-caret-position="-152">
+          <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/Daemon.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="27" column="42" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="357">
+          <caret line="112" column="29" selection-start-line="112" selection-start-column="29" selection-end-line="112" selection-end-column="29" />
         </state>
       </provider>
     </entry>
