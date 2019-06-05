@@ -2,7 +2,7 @@ import {MessageType}         from "../MessageType";
 import {IMessageInstruction} from "./IMessageInstruction";
 
 /**
- * Used for system announcements and administrative messages.
+ * Base skeleton message used for all messages, targeted for system announcements.
  */
 export interface IMessage
 {

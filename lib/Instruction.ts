@@ -2,6 +2,9 @@ import Stack                           from "ts-data.stack";
 import {IMessage}                      from "./models/IMessage";
 import {IMessageInstruction, Priority} from "./models/IMessageInstruction";
 
+/**
+ * Server-side interface of an instruction
+ */
 export class Instruction implements IMessageInstruction
 {
 

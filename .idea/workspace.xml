@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a9d3d2e-7e5c-460a-9240-00ffcea8b93a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/demo.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/demo.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Daemon.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Daemon.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Instruction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Instruction.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Message.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/MessageUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/MessageUser.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Session.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/IMessage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/IMessage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/IMessageInstruction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/IMessageInstruction.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/ISessionPayload.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/ISessionPayload.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,34 +31,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-306">
-              <caret column="7" selection-start-column="7" selection-end-column="7" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/WebSocket.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-152">
-              <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
+            <state relative-caret-position="136">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/Session.ts">
+        <entry file="file://$PROJECT_DIR$/lib/models/IMessageUser.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-152">
-              <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="85">
+              <caret line="5" column="41" lean-forward="true" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -58,17 +51,80 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/Daemon.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="112" column="29" selection-start-line="112" selection-start-column="29" selection-end-line="112" selection-end-column="29" />
+            <state relative-caret-position="394">
+              <caret line="191" column="35" selection-start-line="191" selection-start-column="35" selection-end-line="191" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/@types/websocket/index.d.ts">
+        <entry file="file://$PROJECT_DIR$/lib/Instruction.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4199">
-              <caret line="258" column="4" selection-start-line="258" selection-start-column="4" selection-end-line="258" selection-end-column="4" />
+            <state relative-caret-position="34">
+              <caret line="4" selection-start-line="4" selection-end-line="6" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Message.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="6" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/MessageType.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="12" selection-start-column="12" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/MessageUser.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+              <folding>
+                <element signature="e#0#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Session.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/models/ISessionPayload.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/models/IMessageInstruction.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -78,15 +134,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>bPageReloading</find>
-      <find>set</find>
       <find>pollUserData</find>
       <find>pollUser</find>
       <find>append</find>
@@ -115,6 +169,8 @@
       <find>div.messag</find>
       <find>.content</find>
       <find>log</find>
+      <find>getProfile</find>
+      <find>authorize</find>
     </findStrings>
     <dirStrings>
       <dir>V:\its\wdchandara.wd.its.iastate.edu\projects\website\vendor\webdev\webdev\public\js</dir>
@@ -126,9 +182,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/tutorial/views/tutorial/templates/contact/view-sidebar-fans.phtml" />
-        <option value="V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/tutorial/src/Tutorial/View/Helper/Image.php" />
-        <option value="V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/tutorial/src/Tutorial/View/Renderer/PhpRender.php" />
         <option value="V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/tutorial/src/Tutorial/View/Renderer/PhpRenderer.php" />
         <option value="V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/tutorial/views/tutorial/templates/contact/profile.phtml" />
         <option value="V:/its/wdchandara.wd.its.iastate.edu/projects/website/public/index.php" />
@@ -147,14 +200,10 @@
         <option value="$PROJECT_DIR$/typings/token/token.d.ts" />
         <option value="$PROJECT_DIR$/node_modules/token/index.js" />
         <option value="$PROJECT_DIR$/lib/IMessage.ts" />
-        <option value="$PROJECT_DIR$/lib/Message.ts" />
         <option value="$PROJECT_DIR$/lib/Configuration.ts" />
-        <option value="$PROJECT_DIR$/lib/MessageUser.ts" />
         <option value="$PROJECT_DIR$/lib/WebSocket.ts" />
         <option value="V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/app/config/router.php" />
         <option value="$PROJECT_DIR$/lib/IMessageInstruction.ts" />
-        <option value="$PROJECT_DIR$/lib/Instruction.ts" />
-        <option value="$PROJECT_DIR$/index.ts" />
         <option value="V:/its/wdchandara.wd.its.iastate.edu/www/modules/dev-stats/js/socket.js" />
         <option value="V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/dev-stats/public/js/ChatMessage.js" />
         <option value="V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/dev-stats/public/js/lib/ChatInstruction.js" />
@@ -175,8 +224,15 @@
         <option value="V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/dev-stats/public/js/chat.js" />
         <option value="V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/dev-stats/views/dev-stats/mvc/index/index.phtml" />
         <option value="V:/its/wdchandara.wd.its.iastate.edu/www/modules/dev-stats/css/dev-stats.css" />
-        <option value="$PROJECT_DIR$/lib/Daemon.ts" />
+        <option value="$PROJECT_DIR$/index.ts" />
+        <option value="$PROJECT_DIR$/lib/models/IMessage.ts" />
+        <option value="$PROJECT_DIR$/lib/models/IMessageInstruction.ts" />
+        <option value="$PROJECT_DIR$/lib/models/ISessionPayload.ts" />
+        <option value="$PROJECT_DIR$/lib/Instruction.ts" />
+        <option value="$PROJECT_DIR$/lib/Message.ts" />
+        <option value="$PROJECT_DIR$/lib/MessageUser.ts" />
         <option value="$PROJECT_DIR$/lib/Session.ts" />
+        <option value="$PROJECT_DIR$/lib/Daemon.ts" />
       </list>
     </option>
   </component>
@@ -211,6 +267,12 @@
               <item name="chat-daemon" type="b2602c69:ProjectViewProjectNode" />
               <item name="chat-daemon" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat-daemon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chat-daemon" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -269,7 +331,7 @@
     <configuration default="true" type="NodeJSConfigurationType" path-to-js-file="index.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
-    <configuration name="index.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="index.js" working-dir="$PROJECT_DIR$">
+    <configuration name="demo.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/demo.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <configuration default="true" type="js.build_tools.grunt">
@@ -302,12 +364,12 @@
       <workItem from="1559155834239" duration="69839000" />
       <workItem from="1559566848072" duration="284000" />
       <workItem from="1559567142488" duration="975000" />
-      <workItem from="1559740709556" duration="141000" />
+      <workItem from="1559740709556" duration="1057000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118467000" />
+    <option name="totallyTimeSpent" value="119383000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -327,14 +389,14 @@
       <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.49777117" visible="true" weight="0.23594132" />
       <window_info id="Structure" order="3" sideWeight="0.5022288" side_tool="true" weight="0.20415647" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="1" weight="0.26203808" />
+      <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.26203808" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50061125" side_tool="true" weight="0.32922733" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32922733" />
       <window_info anchor="bottom" id="Database Changes" order="4" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="TypeScript" order="6" sideWeight="0.49938875" weight="0.32922733" />
       <window_info anchor="bottom" id="Find" order="7" weight="0.32922733" />
-      <window_info anchor="bottom" x="1107" y="343" width="1593" height="658" id="Run" order="8" sideWeight="0.49938875" visible="true" weight="0.31354985" />
+      <window_info anchor="bottom" x="1107" y="343" width="1593" height="658" id="Run" order="8" sideWeight="0.49938875" weight="0.31354985" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.39977604" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
@@ -373,28 +435,22 @@
     <option name="exactExcludedFiles">
       <list>
         <option value="$PROJECT_DIR$/lib/Daemon.js" />
+        <option value="$PROJECT_DIR$/lib/Session.js" />
         <option value="$PROJECT_DIR$/lib/CLI.js" />
         <option value="$PROJECT_DIR$/lib/MessageUser.js" />
         <option value="$PROJECT_DIR$/index.js" />
-        <option value="$PROJECT_DIR$/lib/Message.js" />
-        <option value="$PROJECT_DIR$/lib/ISerialisable.js" />
-        <option value="$PROJECT_DIR$/lib/IMessageUser.js" />
-        <option value="$PROJECT_DIR$/lib/IMessage.js" />
-        <option value="$PROJECT_DIR$/lib/MessageType.js" />
-        <option value="$PROJECT_DIR$/lib/Session.js" />
-        <option value="$PROJECT_DIR$/lib/Daemon.d.ts" />
-        <option value="$PROJECT_DIR$/lib/MessageType.d.ts" />
-        <option value="$PROJECT_DIR$/lib/CLI.d.ts" />
-        <option value="$PROJECT_DIR$/lib/MessageUser.d.ts" />
-        <option value="$PROJECT_DIR$/lib/WebSocket.d.ts" />
-        <option value="$PROJECT_DIR$/lib/IMessage.d.ts" />
-        <option value="$PROJECT_DIR$/lib/Message.d.ts" />
-        <option value="$PROJECT_DIR$/lib/IMessageUser.d.ts" />
-        <option value="$PROJECT_DIR$/lib/Session.d.ts" />
-        <option value="$PROJECT_DIR$/index.d.ts" />
-        <option value="$PROJECT_DIR$/lib/IMessageInstruction.js" />
-        <option value="$PROJECT_DIR$/lib/Configuration.js" />
         <option value="$PROJECT_DIR$/lib/Instruction.js" />
+        <option value="$PROJECT_DIR$/lib/Configuration.js" />
+        <option value="$PROJECT_DIR$/index.d.ts" />
+        <option value="$PROJECT_DIR$/lib/Session.d.ts" />
+        <option value="$PROJECT_DIR$/lib/Message.js" />
+        <option value="$PROJECT_DIR$/lib/WebSocket.d.ts" />
+        <option value="$PROJECT_DIR$/lib/MessageUser.d.ts" />
+        <option value="$PROJECT_DIR$/lib/CLI.d.ts" />
+        <option value="$PROJECT_DIR$/lib/MessageType.d.ts" />
+        <option value="$PROJECT_DIR$/lib/Daemon.d.ts" />
+        <option value="$PROJECT_DIR$/lib/MessageType.js" />
+        <option value="$PROJECT_DIR$/index.js" />
       </list>
     </option>
   </component>
@@ -410,54 +466,8 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/debug/src/node.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Configuration.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="25" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Message.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/MessageUser.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/token-generator/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://V:/its/wdchandara.wd.its.iastate.edu/www/modules/dev-stats/js/chat.js" />
-    <entry file="file://$PROJECT_DIR$/node_modules/@types/node/https.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://V:/its/wdchandara.wd.its.iastate.edu/www/modules/dev-stats/progressbar.js" />
     <entry file="file://V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/app/config/router.php" />
-    <entry file="file://$PROJECT_DIR$/index.js">
+    <entry file="file://$PROJECT_DIR$/demo.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/WebSocket.d.ts">
@@ -475,24 +485,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/IMessageUser.ts" />
     <entry file="file://$PROJECT_DIR$/lib/IMessage.ts" />
-    <entry file="file://$PROJECT_DIR$/lib/Instruction.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="13" />
-          <folding>
-            <element signature="e#0#68#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/IMessageInstruction.ts" />
-    <entry file="file://$PROJECT_DIR$/lib/MessageType.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="68" selection-start-line="4" selection-start-column="68" selection-end-line="4" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://V:/its/wdchandara.wd.its.iastate.edu/projects/website/module/dev-stats/public/js/lib/dir.js" />
     <entry file="file://V:/its/wdchandara.wd.its.iastate.edu/projects/website/vendor/webdev/webdev/src/Webdev/View/Helper/HeadScript.php" />
     <entry file="file://V:/its/wdchandara.wd.its.iastate.edu/www/modules/dev-stats/js/lib/ChatMessage.js" />
@@ -1425,32 +1418,108 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@types/websocket/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4199">
+        <state relative-caret-position="195">
           <caret line="258" column="4" selection-start-line="258" selection-start-column="4" selection-end-line="258" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Configuration.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="25" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
-          <caret column="7" selection-start-column="7" selection-end-column="7" />
+        <state relative-caret-position="102">
+          <caret line="6" column="36" lean-forward="true" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/models/IMessage.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/models/IMessageUser.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="41" lean-forward="true" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/models/ISessionPayload.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/models/IMessageInstruction.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Instruction.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="4" selection-start-line="4" selection-end-line="6" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Message.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="6" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/MessageType.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/MessageUser.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/WebSocket.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-152">
-          <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
+        <state relative-caret-position="136">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/Session.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-152">
-          <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        <state relative-caret-position="272">
+          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
@@ -1459,8 +1528,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/Daemon.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="112" column="29" selection-start-line="112" selection-start-column="29" selection-end-line="112" selection-end-column="29" />
+        <state relative-caret-position="394">
+          <caret line="191" column="35" selection-start-line="191" selection-start-column="35" selection-end-line="191" selection-end-column="35" />
         </state>
       </provider>
     </entry>

@@ -4,6 +4,9 @@ import IClientPayload             from "./models/IClientPayload";
 import {IMessageUser}             from "./models/IMessageUser";
 import {IdentityDefault, Session} from "./Session";
 
+/**
+ * Server-side interface of a basic user message
+ */
 export default class MessageUser extends Message implements IMessageUser
 {
     identity: Identity;

@@ -11,6 +11,10 @@ import ISessionPayload                           from "./models/ISessionPayload"
 import {Session}                                 from "./Session";
 import WebSocket                                 from "./WebSocket";
 
+/**
+ * High abstraction of a WebSocket, represents
+ * the actual server's role in organising and destribution.
+ */
 export default class Daemon extends WebSocket
 {
 
@@ -161,11 +165,13 @@ export default class Daemon extends WebSocket
 
     private authorize(client: connection, session: Session): void
     {
+    	// Authorisation
         const getToken = new Instruction({
             payload: session.getToken(),
             name: 'setToken'
         });
 
+        // Identification
         const getProfile = new Instruction({
             payload: '',
             name: 'getProfile'
@@ -174,6 +180,8 @@ export default class Daemon extends WebSocket
         this.sendInstruction(getToken, client)
             .then(() => this.sendInstruction(getProfile, client).then((msg: IMessage) =>
             {
+            	// A bad example of trusting the client
+				// TODO: Server-side authorisation & identification
                 if (msg.instruction !== undefined && msg.instruction.payload !== undefined)
                 {
                     session.setIdentity(<Identity> JSON.parse(msg.instruction.payload));

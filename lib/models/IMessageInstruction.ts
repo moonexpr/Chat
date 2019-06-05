@@ -6,6 +6,10 @@ export enum Priority
     Low,
 }
 
+/**
+ * Used to relay an action the client must do,
+ * upon completion the client will send back a confirmation.
+ */
 export interface IMessageInstruction
 {
     id?: number, // Must be assigned upon broadcast

@@ -2,6 +2,9 @@ import {MessageType}         from "./MessageType";
 import {IMessage}            from './models/IMessage';
 import {IMessageInstruction} from "./models/IMessageInstruction";
 
+/**
+ * Server-side interface of a basic message
+ */
 export default class Message implements IMessage
 {
     timestamp: Date;

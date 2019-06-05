@@ -15,6 +15,9 @@ export const IdentityDefault:Identity = {
     netid: '',
 };
 
+/**
+ * Server-side interface of a user's chat session/
+ */
 export class Session
 {
     client: connection;
